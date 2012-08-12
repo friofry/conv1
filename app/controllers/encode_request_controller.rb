@@ -9,9 +9,10 @@ class EncodeRequestController < ApplicationController
 			"hgta_track" => "mrna",
 			"hgta_table" => "refGene"
 		}
+		@@agent ||= Mechanize.new
 	end
-  
-  def extract
-	session[:sequences] = GetSequences(params)
-  end
+
+	def extract
+		session[:sequences] = GetSequences(params, @@agent)
+	end
 end

@@ -1,13 +1,11 @@
 module EncodeRequestHelper
-	def GetSequences(params)
+	def GetSequences(params,agent)
 		encode_url = "http://genome.ucsc.edu/cgi-bin/hgTables?"
 		encode_url += "clade=#{params["clade"]}&org=#{params["org"]}&"
 		encode_url += "db=#{params["db"]}&hgta_group=#{params["hgta_group"]}&hgta_track=#{params["hgta_track"]}&"
 		encode_url += "hgta_table=#{params["hgta_table"]}"
 		encode_url += "&hgta_regionType=genome&hgta_outputType=sequence"
 
-		agent = Mechanize.new
-		
 		logger.info "1 - encode Table Browser page\n"
 		main_page = agent.get(encode_url)
 
@@ -56,7 +54,7 @@ module EncodeRequestHelper
 
 		logger.info "8 - get data \n"
 		data_page = options_form.click_button(get_button)
-		File.delete(output_file) if File.exist?(output_file)
+		#File.delete(output_file) if File.exist?(output_file)
 		#data_page.save_as(output_file)	
 		return data_page.content
 	end
