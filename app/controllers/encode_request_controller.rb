@@ -1,15 +1,17 @@
 class EncodeRequestController < ApplicationController
-  def prepare
-	@request_params ||= {
-		"clade" => "Mammal",
-		"org" => "Human",
-		"db" => "Feb. 2009 (CRCh37/hg19)",
-		"hgta_group" => "mRNA and EST Tracks",
-		"hgta_track" => "Human mRNAs",
-		"hgta_table" => "RefSeq Genes (refGene)"
-	}
-  end
+	include EncodeRequestHelper
+	def prepare
+		@request_params ||= {
+			"clade" => "mammal",
+			"org" => "Human",
+			"db" => "hg19",
+			"hgta_group" => "rna",
+			"hgta_track" => "mrna",
+			"hgta_table" => "refGene"
+		}
+	end
   
   def extract
+	session[:sequences] = GetSequences(params)
   end
 end

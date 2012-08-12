@@ -1,2 +1,11 @@
 <h1>Extracting</h1>
 <%= params %>
+
+<%= form_for :post, :url => { :action => :extract } do |f| %>
+<p>
+<%= f.label :sequences %>
+<%= f.text_area :sequences, :value => "#{session[:sequences]}" %>
+</p>
+<% end %>
+
+<%= link_to "Back", root_path %>
