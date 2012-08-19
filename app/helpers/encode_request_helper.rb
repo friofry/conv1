@@ -1,5 +1,7 @@
 module EncodeRequestHelper
-	def GetSequences(params,agent)
+	def GetSequences(params)
+		#`hi`
+		agent = Mechanize.new
 		encode_url = "http://genome.ucsc.edu/cgi-bin/hgTables?"
 		encode_url += "clade=#{params["clade"]}&org=#{params["org"]}&"
 		encode_url += "db=#{params["db"]}&hgta_group=#{params["hgta_group"]}&hgta_track=#{params["hgta_track"]}&"

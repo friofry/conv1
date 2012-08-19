@@ -1,26 +1,26 @@
 <%= form_for :post, :url => { :action => :extract } do |f| %>
 <p>
 <%= f.label :clade %>
-<%= f.text_field :clade, :value => "#{@request_params["clade"]}" %>
+<%= collection_select(:post, :clade, @clades, :value, :name, {:prompt => "Select a clade"}, {:id => 'clades_select'}) %>
 
 <%= f.label :org %>
-<%= f.text_field :org, :value => "#{@request_params["org"]}" %>
+<%= collection_select(:post, :org, @orgs, :value, :name, {:prompt => "Select org"}, {:id => 'orgs_select'}) %>
 </p>
 
 <p>
 <%= f.label :db %>
-<%= f.text_field :db, :value => "#{@request_params["db"]}" %>
+<%= collection_select(:post, :db, @dbs, :value, :name, {:prompt => "Select a db"}, {:id => 'dbs_select'}) %>
 
 <%= f.label :hgta_group %>
-<%= f.text_field :hgta_group, :value => "#{@request_params["hgta_group"]}" %>
+<%= collection_select(:post, :db, @groups, :value, :name, {:prompt => "Select a group"}, {:id => 'groups_select'}) %>
 </p>
 
 <p>
 <%= f.label :hgta_track %>
-<%= f.text_field :hgta_track, :value => "#{@request_params["hgta_track"]}" %>
+<%= collection_select(:post, :db, @tracks, :value, :name, {:prompt => "Select a track"}, {:id => 'tracks_select'}) %>
 
 <%= f.label :hgta_table %>
-<%= f.text_field :hgta_table, :value => "#{@request_params["hgta_table"]}" %>
+<%= collection_select(:post, :db, @tables, :value, :name, {:prompt => "Select a table"}, {:id => 'tables_select'}) %>
 </p>
 
 <p>
@@ -40,3 +40,53 @@
 <%= f.submit 'ExtractData' %>
 </p>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    $('#clades_select').change(function() {
+      $.ajax({
+        url: "<%= update_orgs_path %>",
+        data: {
+          clade : $('#clades_select').val()
+        },
+        dataType: "script"
+      });
+    });
+    $('#orgs_select').change(function() {
+      $.ajax({
+        url: "<%= update_dbs_path %>",
+        data: {
+          org: $('#orgs_select').val()
+        },
+        dataType: "script"
+      });
+    });
+    $('#dbs_select').change(function() {
+      $.ajax({
+        url: "<%= update_groups_path %>",
+        data: {
+          db : $('#dbs_select').val()
+        },
+        dataType: "script"
+      });
+    });
+    $('#groups_select').change(function() {
+      $.ajax({
+        url: "<%= update_tracks_path %>",
+        data: {
+          group: $('#groups_select').val()
+        },
+        dataType: "script"
+      });
+    });
+    $('#tracks_select').change(function() {
+      $.ajax({
+        url: "<%= update_tables_path %>",
+        data: {
+          track: $('#tracks_select').val()
+        },
+        dataType: "script"
+      });
+    });
+});
+</script>
