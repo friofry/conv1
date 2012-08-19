@@ -1,0 +1,18 @@
+<h1>Extracting</h1>
+<%= params %>
+
+<%= form_for :post, :url => { :action => :process_sequence } do |f| %>
+<p>
+<%= f.label :sequences %>
+<%= f.text_area :sequences, :value => "#{session[:sequences]}" %>
+</p>
+
+<p>
+<%= f.label :keyword %>
+<%= f.text_field :keyword, :value => "AAA" %>
+</p>
+
+<%= f.submit 'Process' %>
+<% end %>
+
+<%= link_to "Back", root_path %>

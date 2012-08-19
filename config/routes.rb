@@ -1,5 +1,7 @@
 Conv1::Application.routes.draw do
 	post "encode_request/extract"
+	post "encode_request/static_test"
+	post "encode_request/process_sequence"
 	get 'encode_request/update_orgs', :as => 'update_orgs'
 	get 'encode_request/update_dbs', :as => 'update_dbs'
 	get 'encode_request/update_groups', :as => 'update_groups'

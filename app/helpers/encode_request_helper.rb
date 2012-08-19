@@ -60,4 +60,7 @@ module EncodeRequestHelper
 		#data_page.save_as(output_file)	
 		return data_page.content
 	end
+	def test_sequences
+		File.read('data/static_test.fst')
+	end
 end

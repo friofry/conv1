@@ -37,4 +37,13 @@ class EncodeRequestController < ApplicationController
 	def extract
 		session[:sequences] = GetSequences(params)
 	end
+	
+	def static_test()
+		logger.debug params.inspect
+		session[:sequences] = test_sequences
+	end
+	
+	def process_sequence
+		redirect_to "http://genome.ucsc.edu/cgi-bin/hgTracks?hgS_doOtherUser=submit&hgS_otherUserName=Kate&hgS_otherUserSessionName=encodePortalSession"
+	end
 end

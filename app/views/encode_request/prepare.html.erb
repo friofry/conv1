@@ -41,6 +41,12 @@
 </p>
 <% end %>
 
+<%= form_for :post, :url => { :action => :static_test } do |f| %>
+<p>
+<%= f.submit 'Static Test' %>
+</p>
+<% end %>
+
 <script>
   $(document).ready(function() {
     $('#clades_select').change(function() {
